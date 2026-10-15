@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía del Equipo · Mundo Hispano</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Styles used only on this guide page -->
+  <style>
+    .guia { max-width: 820px; margin: 0 auto; padding: 0 16px 60px; }
+    .paso { background: white; border-radius: var(--radio); padding: 26px 28px; margin-top: 26px;
+            border-left: 6px solid var(--rojo); box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+    .paso h2 { font-size: 1.6rem; margin-bottom: 10px; }
+    .paso h2 .num { display: inline-flex; width: 38px; height: 38px; border-radius: 50%; margin-right: 8px;
+                    background: var(--rojo); color: white; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .paso p, .paso li { margin-bottom: 8px; }
+    .paso ol, .paso ul { padding-left: 22px; }
+    pre { background: var(--tinta); color: #f8e8c8; padding: 14px 16px; border-radius: 10px;
+          overflow-x: auto; font-size: .85rem; margin: 10px 0 14px; }
+    code { font-family: Consolas, monospace; }
+    p code, li code, td code { background: var(--papel-2); padding: 1px 6px; border-radius: 4px; font-size: .9em; }
+    .aviso { background: #fff4d6; border-left: 5px solid var(--oro); padding: 12px 16px; border-radius: 8px; margin: 12px 0; }
+    .peligro { background: #fde4e6; border-left: 5px solid var(--rojo); padding: 12px 16px; border-radius: 8px; margin: 12px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: .95rem; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--papel-2); vertical-align: top; }
+    th { background: var(--papel-2); }
+    .check li { list-style: none; margin-left: -22px; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">Mundo <span>Hispano</span></a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="index.html#destinos">Destinos</a>
+      <a href="guia.html" class="active">Guía</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="padding-bottom:40px">
+    <p class="hero-tag">Para el equipo · For the team</p>
+    <h1>Cómo hacer <br><em>tu página</em></h1>
+    <p class="hero-text">A step-by-step guide to adding your country.
+      No coding knowledge needed: you only edit text.</p>
+  </section>
+
+  <div class="guia">
+
+    <!-- ===== THE BIG PICTURE ===== -->
+    <div class="paso">
+      <h2>🧭 How it works</h2>
+      <p>The website is already built. Every country page uses the <b>same design</b>.
+         You only fill in <b>one content file</b> with your text and pictures, and the page builds itself
+         (in your country's flag colours!).</p>
+      <p>You will create or touch only <b>these things</b>:</p>
+      <table>
+        <tr><th>What</th><th>Where</th></tr>
+        <tr><td>Your card on the Home page</td><td><code>js/paises.js</code> (one small block)</td></tr>
+        <tr><td>All your page content</td><td><code>contenido/yourcountry.js</code></td></tr>
+        <tr><td>Your pictures</td><td><code>images/yourcountry/</code></td></tr>
+      </table>
+      <div class="peligro">⛔ <b>Don't edit any other file</b> (<code>pais.js</code>, <code>main.js</code>, <code>style.css</code>, the <code>.html</code> files).
+        If you want a design change, ask Shade.</div>
+    </div>
+
+    <!-- ===== STEP 1 ===== -->
+    <div class="paso">
+      <h2><span class="num">1</span>Get ready</h2>
+      <ol>
+        <li>Install <b>VS Code</b> (free): <code>code.visualstudio.com</code></li>
+        <li>Get the <b>MundoHispano</b> folder from Shade (zip file) and unzip it.</li>
+        <li>In VS Code: <b>File → Open Folder…</b> and choose the <code>MundoHispano</code> folder.</li>
+        <li>In File Explorer, <b>double-click <code>index.html</code></b>. The website opens in your browser.</li>
+      </ol>
+      <div class="aviso">💡 Keep the browser open. After every change: <b>save in VS Code (Ctrl + S)</b>,
+        then <b>refresh the browser (F5)</b> to see it.</div>
+    </div>
+
+    <!-- ===== STEP 2 ===== -->
+    <div class="paso">
+      <h2><span class="num">2</span>Add your card</h2>
+      <ol>
+        <li>On the Home page, click the dashed <b>➕ Tu país aquí</b> card.</li>
+        <li>Choose your country, write <b>your name</b>, a short Spanish slogan, and your photo
+          (for example <code>images/mexico/portada.jpg</code>).</li>
+        <li>Click <b>Crear tarjeta</b>. Your card appears with a "Borrador" (draft) label.</li>
+        <li>Click <b>📋 Copiar código</b>.</li>
+        <li>In VS Code open <code>js/paises.js</code> and paste it under the line
+          <code>// ↓↓↓ Paste your country here ↓↓↓</code>. Save.</li>
+        <li>Back on the Home page, delete the draft card with its <b>✕</b>. Your permanent card stays.</li>
+      </ol>
+      <div class="aviso">📝 Remember the <code>id</code> in the code you pasted (e.g. <code>id: "mexico"</code>).
+        You need it in the next step.</div>
+    </div>
+
+    <!-- ===== STEP 3 ===== -->
+    <div class="paso">
+      <h2><span class="num">3</span>Create your content file</h2>
+      <ol>
+        <li>In VS Code, open the <code>contenido</code> folder on the left.</li>
+        <li>Right-click <code>espana.js</code> → <b>Copy</b>, then right-click the <code>contenido</code> folder → <b>Paste</b>.</li>
+        <li>Rename the copy to <b>your id + .js</b>, for example <code>mexico.js</code>.</li>
+        <li>Click your card on the Home page. You now see a page with España's example text, in your colours.</li>
+      </ol>
+      <div class="aviso">⚠️ The file name must match your <code>id</code> <b>exactly</b>: lowercase, no accents, no spaces.
+        <code>"republicadominicana"</code> → <code>republicadominicana.js</code></div>
+    </div>
+
+    <!-- ===== STEP 4 ===== -->
+    <div class="paso">
+      <h2><span class="num">4</span>Write your content</h2>
+      <p>Open your file. Change the text <b>between the quotes</b>. Here is what each part does:</p>
+      <table>
+        <tr><th>Part</th><th>What it is</th></tr>
+        <tr><td><code>datos</code></td><td>Quick facts boxes (capital, language, currency…)</td></tr>
+        <tr><td><code>introduccion</code></td><td>A short introduction under the facts</td></tr>
+        <tr><td><code>secciones</code></td><td>All your sections. Add, remove or reorder them freely</td></tr>
+        <tr><td><code>reflexion</code></td><td>Your "Lo que aprendí" paragraph</td></tr>
+      </table>
+
+      <h3 style="margin-top:18px">Section styles</h3>
+      <p>Each section has a <code>tipo</code> that sets its look:</p>
+      <table>
+        <tr><th>tipo</th><th>Looks like</th><th>Good for</th></tr>
+        <tr><td><code>"tarjetas"</code></td><td>Cards with picture + title + text</td><td>Places, food, festivals</td></tr>
+        <tr><td><code>"texto"</code></td><td>Paragraphs next to one picture</td><td>Music, dance, history</td></tr>
+        <tr><td><code>"lista"</code></td><td>Icon + title + text</td><td>Transport, money, tips, fun facts</td></tr>
+        <tr><td><code>"frases"</code></td><td>Flip cards</td><td>Useful phrases</td></tr>
+      </table>
+
+      <h3 style="margin-top:18px">Adding more</h3>
+      <p>To add another card, copy one line inside <code>items: [ ]</code> and change it:</p>
+<pre><code>items: [
+  { titulo: "Tacos", foto: "images/mexico/tacos.jpg", texto: "..." },
+  { titulo: "Mole",  foto: "images/mexico/mole.jpg",  texto: "..." },   ← new
+]</code></pre>
+      <p>To add a whole new section, copy a full block from <code>{</code> to <code>},</code> inside <code>secciones</code>.</p>
+    </div>
+
+    <!-- ===== STEP 5 ===== -->
+    <div class="paso">
+      <h2><span class="num">5</span>Your 25 Spanish words</h2>
+      <p>Write Spanish words <b>naturally inside your sentences</b> using this pattern:</p>
+<pre><code>[[spanish word|english meaning]]</code></pre>
+      <p>Example:</p>
+<pre><code>texto: "México tiene muchas [[playas|beaches]] y [[pirámides|pyramids]]."</code></pre>
+      <p>The word is highlighted and shows its English meaning on hover.
+         Use at least <b>25 different</b> Spanish words across your page.</p>
+      <div class="aviso">💡 Use them <b>naturally</b> in your sentences, not as a random list at the bottom.</div>
+    </div>
+
+    <!-- ===== STEP 6 ===== -->
+    <div class="paso">
+      <h2><span class="num">6</span>Add your pictures</h2>
+      <ol>
+        <li>Create a folder <code>images/yourcountry/</code> (e.g. <code>images/mexico/</code>).</li>
+        <li>Save your photos there with <b>simple names</b>: <code>tacos.jpg</code>, <code>playa.jpg</code> (no spaces).</li>
+        <li>Write the path in your file: <code>foto: "images/mexico/tacos.jpg"</code></li>
+      </ol>
+      <p>No picture yet? You'll see a <b>📷 Añade una foto</b> box. That's fine, nothing is broken.</p>
+    </div>
+
+    <!-- ===== STEP 7 ===== -->
+    <div class="paso">
+      <h2><span class="num">7</span>Send your work to Shade</h2>
+      <p>When you're done, send these <b>3 things</b> (zip them together):</p>
+      <ol>
+        <li>Your content file: <code>contenido/yourcountry.js</code></li>
+        <li>Your pictures folder: <code>images/yourcountry/</code></li>
+        <li>Your card code from Step 2 (the block you pasted in <code>paises.js</code>)</li>
+      </ol>
+      <p>Shade adds them to the main website. Because everyone has their own file, nobody's work gets overwritten.</p>
+    </div>
+
+    <!-- ===== RULES ===== -->
+    <div class="paso">
+      <h2>✍️ Golden rules</h2>
+      <ul>
+        <li><b>Keep the quotes</b> <code>" "</code> around every text. Need quotes inside a text? Use <code>'</code> instead.</li>
+        <li><b>Keep the commas</b> <code>,</code> between items and after every <code>}</code>.</li>
+        <li><b>Write it yourself.</b> The assignment says: original work, no copy-paste. Research, then write in your own words.</li>
+        <li><b>Your reflection</b> must be your own paragraph about what <i>you</i> learned and felt.</li>
+        <li>Replace <b>all</b> the "(Ejemplo)" text from España.</li>
+      </ul>
+    </div>
+
+    <!-- ===== TROUBLESHOOTING ===== -->
+    <div class="paso">
+      <h2>🔧 Something broke?</h2>
+      <table>
+        <tr><th>Problem</th><th>Fix</th></tr>
+        <tr><td>All cards disappeared from the Home page</td>
+            <td>A mistake in <code>js/paises.js</code>. Check quotes and commas in the block you pasted.</td></tr>
+        <tr><td>My page says "Página en construcción"</td>
+            <td>Your file name doesn't match your <code>id</code>, or it's not in the <code>contenido</code> folder.</td></tr>
+        <tr><td>My page is blank or shows only the banner</td>
+            <td>A missing quote or comma in your content file. VS Code shows a <b>red squiggly line</b> near the mistake.</td></tr>
+        <tr><td>My photo doesn't show</td>
+            <td>Check the name <b>exactly</b>: <code>.jpg</code> vs <code>.jpeg</code> vs <code>.png</code>, and capital letters.</td></tr>
+        <tr><td>A word isn't highlighted</td>
+            <td>Check the pattern: two square brackets, a <code>|</code> in the middle: <code>[[sol|sun]]</code></td></tr>
+      </table>
+      <div class="aviso">🕵️ Still stuck? In the browser press <b>F12</b> → <b>Console</b>. The red message shows
+        the file name and line number of the mistake.</div>
+    </div>
+
+    <!-- ===== CHECKLIST ===== -->
+    <div class="paso">
+      <h2>✅ Final checklist</h2>
+      <ul class="check">
+        <li>☐ My card shows on the Home page with my name</li>
+        <li>☐ My page opens and uses my country's colours</li>
+        <li>☐ No "(Ejemplo)" text left</li>
+        <li>☐ I used at least 25 different Spanish words</li>
+        <li>☐ My pictures show</li>
+        <li>☐ I wrote my own reflection</li>
+        <li>☐ I sent my 3 things to Shade</li>
+      </ul>
+    </div>
+
+    <p style="text-align:center;margin-top:36px">
+      <a class="btn" href="index.html">¡Vamos! Volver al inicio ✈️</a>
+    </p>
+  </div>
+
+  <footer class="site-footer">
+    <p>Hecho con ❤️ por nuestro equipo · Digital Assignment 2026-27</p>
+  </footer>
+</body>
+</html>

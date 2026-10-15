@@ -1,0 +1,141 @@
+// ============================================================
+//  COUNTRY PAGE: builds the page from contenido/<id>.js
+//  You don't need to edit this file. Edit your content file instead.
+// ============================================================
+
+const id = new URLSearchParams(location.search).get("id");
+const pais = PAISES.concat(leerBorradores()).find(p => p.id === id);
+const pagina = document.getElementById("pagina");
+
+// Turns [[comida|food]] into a highlighted word with a translation
+function marcar(texto) {
+  return (texto || "").replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g, function (m, es, en) {
+    return `<span class="es" data-en="${en.trim()}">${es.trim()}</span>`;
+  });
+}
+
+// A picture box. If the picture is missing, a "📷" placeholder shows instead.
+function foto(src, alt) {
+  return `<div class="foto">${src ? `<img src="${src}" alt="${alt || ""}" onerror="this.remove()">` : ""}</div>`;
+}
+
+// Text can be one string or a list of paragraphs
+function parrafos(t) {
+  return [].concat(t || []).map(p => `<p>${marcar(p)}</p>`).join("");
+}
+
+// ---------- One function per section style ----------
+const ESTILOS = {
+  // cards: picture + title + text (places, food, festivals)
+  tarjetas: s => `<div class="mini-grid">${(s.items || []).map(i => `
+      <div class="mini-card">${foto(i.foto, i.titulo)}
+        <div class="mini-body"><h3>${marcar(i.titulo)}</h3>${parrafos(i.texto)}</div>
+      </div>`).join("")}</div>`,
+
+  // text next to a picture (music & dance, history...)
+  texto: s => `<div class="texto-foto">
+      <div>${parrafos(s.texto)}</div>${s.foto ? foto(s.foto, s.titulo) : ""}</div>`,
+
+  // icon list (transport, money, tips, fun facts...)
+  lista: s => `<div class="tips">${(s.items || []).map(i => `
+      <div class="tip"><span class="tip-icono">${i.icono || "•"}</span>
+        <div><h3>${marcar(i.titulo)}</h3>${parrafos(i.texto)}</div></div>`).join("")}</div>`,
+
+  // flip cards: Spanish on the front, English on the back
+  frases: s => `<p class="hint">👆 Haz clic en una tarjeta · Click a card to flip it</p>
+    <div class="flip-grid">${(s.items || []).map(i => `
+      <div class="flip" tabindex="0"><div class="flip-in">
+        <div class="flip-front">${i.es}</div>
+        <div class="flip-back">${i.en}</div>
+      </div></div>`).join("")}</div>`
+};
+
+// ---------- Build the page ----------
+function construir() {
+  if (!pais) {
+    pagina.innerHTML = `<section class="section"><h2>País no encontrado 😕</h2>
+      <p class="section-sub">Country not found.</p><a class="btn" href="index.html">Volver · Back</a></section>`;
+    return;
+  }
+
+  const c = window.CONTENIDO || null;
+
+  // Colours: from the content file, otherwise from the flag
+  const col = (c && c.colores) || COLORES[pais.codigo] || ["#c8102e", "#f2a900"];
+  document.documentElement.style.setProperty("--rojo", col[0]);
+  document.documentElement.style.setProperty("--oro", col[1]);
+  document.title = pais.nombre + " · Mundo Hispano";
+
+  let html = `
+    <section class="pais-hero" style="background-image:url('${pais.foto}')">
+      <div class="pais-hero-in">
+        <img class="pais-flag" src="https://flagcdn.com/w160/${pais.codigo}.png" alt="Bandera">
+        <h1>${pais.nombre}</h1>
+        <p>${pais.lema}</p>
+        <span class="autor-badge">✍️ Página de ${pais.autor}</span>
+      </div>
+    </section>`;
+
+  // No content file yet → friendly message
+  if (!c) {
+    html += `<section class="section"><h2>¡Página en construcción! 🚧</h2>
+      <p class="section-sub">This page has no content yet.</p>
+      <p>To fill it in: copy <code>contenido/espana.js</code>, rename the copy to
+      <code>contenido/${pais.id}.js</code> and change the text inside.</p></section>`;
+    pagina.innerHTML = html;
+    return;
+  }
+
+  // Quick facts
+  if (c.datos) {
+    html += `<section class="datos">${c.datos.map(d => `
+      <div class="dato"><span>${d.icono}</span><small>${d.titulo}</small><b>${marcar(d.valor)}</b></div>`).join("")}
+    </section>`;
+  }
+
+  // Intro
+  if (c.introduccion) html += `<section class="intro">${parrafos(c.introduccion)}</section>`;
+
+  const secciones = c.secciones || [];
+
+  // Section menu (buttons that jump to each section)
+  html += `<nav class="chips">${secciones.map((s, i) =>
+    `<a href="#s${i}">${s.icono || ""} ${s.titulo}</a>`).join("")}
+    <a href="#reflexion">💭 Reflexión</a></nav>`;
+
+  // The sections themselves
+  secciones.forEach((s, i) => {
+    const estilo = ESTILOS[s.tipo] || ESTILOS.texto;
+    html += `<section class="section ${i % 2 ? "section-alt" : ""}" id="s${i}">
+      <h2>${s.icono || ""} ${s.titulo}</h2>
+      ${s.subtitulo ? `<p class="section-sub">${s.subtitulo}</p>` : ""}
+      ${estilo(s)}
+    </section>`;
+  });
+
+  // Reflection
+  html += `<section class="section ${secciones.length % 2 ? "section-alt" : ""}" id="reflexion">
+    <h2>💭 Lo que aprendí</h2>
+    <div class="reflexion">${parrafos(c.reflexion)}<p class="firma">— ${pais.autor}</p></div>
+  </section>`;
+
+  pagina.innerHTML = html;
+
+  // Make tooltips tappable and cards flippable
+  pagina.querySelectorAll(".es").forEach(w => w.onclick = () => w.classList.toggle("show"));
+  pagina.querySelectorAll(".flip").forEach(f => {
+    f.onclick = () => f.classList.toggle("girada");
+    f.onkeydown = e => { if (e.key === "Enter") f.classList.toggle("girada"); };
+  });
+}
+
+// Load the country's content file, then build the page
+if (pais) {
+  const s = document.createElement("script");
+  s.src = "contenido/" + pais.id + ".js";
+  s.onload = construir;
+  s.onerror = construir;   // no file yet → "en construcción" message
+  document.body.appendChild(s);
+} else {
+  construir();
+}
