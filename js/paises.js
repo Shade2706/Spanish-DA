@@ -31,6 +31,15 @@ const PAISES = [
     foto: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=800"
   },
 
+  {
+    id: "mexico",
+    nombre: "México",
+    codigo: "mx",
+    autor: "Sarthak",
+    lema: "Mariachi, tacos y sol",
+    foto: "https://www.qantas.com/adobe/assets/urn:aaid:aem:3d8a0743-fffe-4b70-861a-44172bf687f6/as/best-places-visit-2026-mexico-city-getty.avif?assetName=best-places-visit-2026-mexico-city-getty.jpg"
+  },
+
   // ↓↓↓ Paste your country here ↓↓↓
   
 
