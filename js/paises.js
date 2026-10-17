@@ -26,7 +26,7 @@ const PAISES = [
     id: "espana",
     nombre: "España",
     codigo: "es",
-    autor: "Shade P",
+    autor: "Santosh P",
     lema: "Tapas, flamenco y sol",
     foto: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=800"
   },
