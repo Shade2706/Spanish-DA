@@ -35,11 +35,11 @@ var CONTENIDO = {
       tipo: "tarjetas",
       items: [
         { titulo: "Chichén Itzá", foto: "images/mexico/chichen.jpg",
-          texto: "Una [[antigua|ancient]] [[ciudad|city]] maya en Yucatán. (Ejemplo)" },
+          texto: "Una [[antigua|ancient]] [[ciudad|city]] maya en Yucatán.  " },
         { titulo: "Teotihuacán", foto: "images/mexico/teotihuacan.jpg",
-          texto: "[[Pirámides|Pyramids]] grandes cerca de la Ciudad de México. (Ejemplo)" },
+          texto: "[[Pirámides|Pyramids]] grandes cerca de la Ciudad de México.  " },
         { titulo: "Cancún", foto: "images/mexico/cancun.jpg",
-          texto: "Playas [[hermosas|beautiful]] con [[agua|water]] azul. (Ejemplo)" }
+          texto: "Playas [[hermosas|beautiful]] con [[agua|water]] azul.  " }
       ]
     },
 
@@ -48,9 +48,9 @@ var CONTENIDO = {
       tipo: "tarjetas",
       items: [
         { titulo: "Tacos", foto: "images/mexico/tacos.jpg",
-          texto: "Tortillas de [[maíz|corn]] con [[carne|meat]], [[cebolla|onion]] y cilantro. (Ejemplo)" },
+          texto: "Tortillas de [[maíz|corn]] con [[carne|meat]], [[cebolla|onion]] y cilantro.  " },
         { titulo: "Mole", foto: "images/mexico/mole.jpg",
-          texto: "Una [[salsa|sauce]] [[tradicional|traditional]] con chocolate y [[chiles|chili peppers]]. (Ejemplo)" }
+          texto: "Una [[salsa|sauce]] [[tradicional|traditional]] con chocolate y [[chiles|chili peppers]]. " }
       ]
     },
 
@@ -59,7 +59,7 @@ var CONTENIDO = {
       tipo: "tarjetas",
       items: [
         { titulo: "Día de Muertos", foto: "images/mexico/diademuertos.jpg",
-          texto: "Una [[fiesta|party]] para recordar a los [[familiares|relatives]] que [[murieron|died]]. (Ejemplo)" }
+          texto: "Una [[fiesta|party]] para recordar a los [[familiares|relatives]] que [[murieron|died]].  " }
       ]
     },
 
@@ -67,7 +67,7 @@ var CONTENIDO = {
       icono: "🎺", titulo: "Mariachi y música", subtitulo: "Music & dance",
       tipo: "texto", foto: "images/mexico/mariachi.jpg",
       texto: [
-        "El [[mariachi|mariachi band]] es la [[música|music]] tradicional más [[famosa|famous]] de México. (Ejemplo)"
+        "El [[mariachi|mariachi band]] es la [[música|music]] tradicional más [[famosa|famous]] de México.  "
       ]
     },
 
@@ -75,8 +75,8 @@ var CONTENIDO = {
       icono: "🚌", titulo: "Transporte", subtitulo: "Getting around",
       tipo: "lista",
       items: [
-        { icono: "✈️", titulo: "Avión", texto: "El [[avión|plane]] es [[rápido|fast]] para viajar entre [[estados|states]] lejanos. (Ejemplo)" },
-        { icono: "🚇", titulo: "Metro", texto: "La Ciudad de México tiene un metro muy [[grande|big]]. (Ejemplo)" }
+        { icono: "✈️", titulo: "Avión", texto: "El [[avión|plane]] es [[rápido|fast]] para viajar entre [[estados|states]] lejanos.  " },
+        { icono: "🚇", titulo: "Metro", texto: "La Ciudad de México tiene un metro muy [[grande|big]].  " }
       ]
     },
 
@@ -84,8 +84,8 @@ var CONTENIDO = {
       icono: "💵", titulo: "Dinero y presupuesto", subtitulo: "Money & budget",
       tipo: "lista",
       items: [
-        { icono: "💳", titulo: "Peso", texto: "La [[moneda|currency]] oficial es el peso mexicano. (Ejemplo)" },
-        { icono: "🧾", titulo: "Presupuesto", texto: "Write an example daily budget here. (Ejemplo)" }
+        { icono: "💳", titulo: "Peso", texto: "La [[moneda|currency]] oficial es el peso mexicano.  " },
+        { icono: "🧾", titulo: "Presupuesto", texto: "Write an example daily budget here.  " }
       ]
     },
 
@@ -104,8 +104,8 @@ var CONTENIDO = {
       icono: "☀️", titulo: "Cuándo ir", subtitulo: "Best time to visit",
       tipo: "lista",
       items: [
-        { icono: "🍂", titulo: "Otoño", texto: "Buen [[clima|weather]] y puedes ver el Día de Muertos. (Ejemplo)" },
-        { icono: "☀️", titulo: "Verano", texto: "Temporada de [[lluvias|rains]] y hace [[calor|heat]]. (Ejemplo)" }
+        { icono: "🍂", titulo: "Otoño", texto: "Buen [[clima|weather]] y puedes ver el Día de Muertos.  " },
+        { icono: "☀️", titulo: "Verano", texto: "Temporada de [[lluvias|rains]] y hace [[calor|heat]].  " }
       ]
     },
 
@@ -113,7 +113,7 @@ var CONTENIDO = {
       icono: "⚠️", titulo: "Seguridad y consejos", subtitulo: "Safety & travel tips",
       tipo: "lista",
       items: [
-        { icono: "🎒", titulo: "Cuidado", texto: "Usa taxis [[autorizados|authorized]] o [[aplicaciones|apps]] de transporte. (Ejemplo)" }
+        { icono: "🎒", titulo: "Cuidado", texto: "Usa taxis [[autorizados|authorized]] o [[aplicaciones|apps]] de transporte.  " }
       ]
     },
 
@@ -121,7 +121,7 @@ var CONTENIDO = {
       icono: "🤓", titulo: "Datos curiosos", subtitulo: "Fun facts",
       tipo: "lista",
       items: [
-        { icono: "🍫", titulo: "El chocolate", texto: "El chocolate es [[originario|native]] de México y era [[sagrado|sacred]] para los [[aztecas|Aztecs]]. (Ejemplo)" }
+        { icono: "🍫", titulo: "El chocolate", texto: "El chocolate es [[originario|native]] de México y era [[sagrado|sacred]] para los [[aztecas|Aztecs]].  " }
       ]
     }
 
