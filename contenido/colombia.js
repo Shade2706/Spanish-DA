@@ -80,7 +80,7 @@ var CONTENIDO = {
       items: [
         {
           titulo: "Carnaval de Barranquilla",
-          foto: "images/colombia/cartagena-street.jpeg",
+          foto: "images/colombia/carnaval.jpg",
           texto: "El Carnaval de Barranquilla es una fiesta famosa con [[música|music]], [[baile|dance]], disfraces y desfiles."
         }
       ]
@@ -89,7 +89,7 @@ var CONTENIDO = {
     {
       icono: "🎶", titulo: "Música y baile", subtitulo: "Music and dance",
       tipo: "texto",
-      foto: "images/colombia/cartagena-street.jpeg",
+      foto: "images/colombia/cumbia.jpg",
       texto: [
         "La [[cumbia|cumbia music]] y el [[vallenato|vallenato music]] son estilos musicales importantes de Colombia.",
         "La música y el baile son importantes en las [[tradiciones|traditions]] colombianas."
