@@ -26,11 +26,10 @@ const PAISES = [
     id: "espana",
     nombre: "España",
     codigo: "es",
-    autor: "Shade P",
+    autor: "Santosh P",
     lema: "Tapas, flamenco y sol",
     foto: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=800"
   },
-
   {
     id: "mexico",
     nombre: "México",
@@ -39,19 +38,14 @@ const PAISES = [
     lema: "Mariachi, tacos y sol",
     foto: "https://www.qantas.com/adobe/assets/urn:aaid:aem:3d8a0743-fffe-4b70-861a-44172bf687f6/as/best-places-visit-2026-mexico-city-getty.avif?assetName=best-places-visit-2026-mexico-city-getty.jpg"
   },
-
   {
     id: "argentina",
     nombre: "Argentina",
     codigo: "ar",
-    autor: "Subhra",
+    autor: "Subhra Akhuli",
     lema: "Fútbol, tango y pasión",
-    foto: "https://www.weroad.it/cdn-cgi/image/q=75,scq=60,f=auto/https://strapi-imaginary.weroad.it/resource/medium/128108/cityscape-green-dome-plaza-sunset.jpg"
-  },
-
-  // ↓↓↓ Paste your country here ↓↓↓
-  
-
+    foto: "images/argentina/buenos-aires.jpg"
+  }
 ];
 
 
