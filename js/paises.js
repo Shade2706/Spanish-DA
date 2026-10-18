@@ -53,6 +53,14 @@ const PAISES = [
     autor: "Harsh Kumar Singh",
     lema: "Pura Vida, pura naturaleza",
     foto: "images/costarica/san Jose.jpg"
+  },
+  {
+    id: "colombia",
+    nombre: "Colombia",
+    codigo: "co",
+    autor: "Ansh Raj",
+    lema: "Colombia, el país de la belleza",
+    foto: "images/colombia/bogota.jpg"
   }
 ];
 
