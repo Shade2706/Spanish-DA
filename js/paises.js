@@ -45,6 +45,14 @@ const PAISES = [
     autor: "Subhra Akhuli",
     lema: "Fútbol, tango y pasión",
     foto: "images/argentina/buenos-aires.jpg"
+  },
+  {
+    id: "costarica",
+    nombre: "Costa Rica",
+    codigo: "cr",
+    autor: "Harsh Kumar Singh",
+    lema: "Pura Vida, pura naturaleza",
+    foto: "images/costarica/san Jose.jpg"
   }
 ];
 
