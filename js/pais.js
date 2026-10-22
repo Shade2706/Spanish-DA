@@ -16,7 +16,7 @@ function marcar(texto) {
 
 // A picture box. If the picture is missing, a "📷" placeholder shows instead.
 function foto(src, alt) {
-  return `<div class="foto">${src ? `<img src="${src}" alt="${alt || ""}" loading="lazy" onerror="this.remove()">` : ""}</div>`;
+  return src ? `<div class="foto"><img src="${src}" alt="${alt || ""}" loading="lazy" onerror="this.closest('.foto')?.remove()"></div>` : "";
 }
 
 // Text can be one string or a list of paragraphs
@@ -27,10 +27,10 @@ function parrafos(t) {
 // ---------- One function per section style ----------
 const ESTILOS = {
   // cards: picture + title + text (places, food, festivals)
-  tarjetas: s => `<div class="mini-grid">${(s.items || []).map((i, index) => `
-      <div class="mini-card ${index === 0 ? "mini-card-featured" : ""}">${foto(i.foto, i.titulo)}
+  tarjetas: s => `<div class="mini-grid">${(s.items || []).filter(i => i && (i.titulo || i.texto)).map((i, index) => `
+      <article class="mini-card ${index === 0 ? "mini-card-featured" : ""}">${foto(i.foto, i.titulo)}
         <div class="mini-body"><h3>${marcar(i.titulo)}</h3>${parrafos(i.texto)}</div>
-      </div>`).join("")}</div>`,
+      </article>`).join("")}</div>`,
 
   // text next to a picture (music & dance, history...)
   texto: s => `<div class="texto-foto">
@@ -65,14 +65,22 @@ function construir() {
   document.documentElement.style.setProperty("--rojo", col[0]);
   document.documentElement.style.setProperty("--oro", col[1]);
   document.title = pais.nombre + " · Mundo Hispano";
+  const fallbackFoto = (c?.secciones || []).flatMap(s => s.items || []).find(i => i && i.foto)?.foto || "";
+  const heroFotos = [pais.foto, fallbackFoto].filter(Boolean);
+  const heroIntro = c?.introduccion ? [].concat(c.introduccion)[0] : "";
 
   let html = `
-    <section class="pais-hero" style="background-image:url('${pais.foto}')">
+    <section class="pais-hero" style="${heroFotos.length ? `background-image:${heroFotos.map(src => `url('${src}')`).join(",")}` : ""}">
       <div class="pais-hero-in">
         <p class="eyebrow">Guía de destino · Destination guide</p>
-        <img class="pais-flag" src="https://flagcdn.com/w160/${pais.codigo}.png" alt="Bandera">
-        <h1>${pais.nombre}</h1>
-        <p>${pais.lema}</p>
+        <div class="pais-hero-heading">
+          <img class="pais-flag" src="https://flagcdn.com/w160/${pais.codigo}.png" alt="Bandera de ${pais.nombre}">
+          <div>
+            <p class="pais-hero-kicker">${pais.codigo.toUpperCase()} · ${pais.lema}</p>
+            <h1>${pais.nombre}</h1>
+          </div>
+        </div>
+        ${heroIntro ? `<p class="pais-hero-intro">${marcar(heroIntro)}</p>` : ""}
         <span class="autor-badge">✍️ Página de ${pais.autor}</span>
       </div>
     </section>`;
@@ -89,7 +97,7 @@ function construir() {
 
   // Quick facts
   if (c.datos) {
-    html += `<section class="datos">${c.datos.map(d => `
+    html += `<section class="datos" aria-label="Datos rápidos de ${pais.nombre}">${c.datos.filter(d => d && (d.titulo || d.valor)).map(d => `
       <div class="dato"><span>${d.icono}</span><small>${d.titulo}</small><b>${marcar(d.valor)}</b></div>`).join("")}
     </section>`;
   }
