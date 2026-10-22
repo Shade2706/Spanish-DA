@@ -5,69 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Descubre el Mundo Hispano</title>
 
-  <!-- Fonts from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Our shared design file (used by every page) -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ===== HEADER + MENU ===== -->
   <header class="site-header">
     <a href="index.html" class="logo">Mundo <span>Hispano</span></a>
-    <nav>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="site-nav">
       <a href="index.html" class="active">Inicio</a>
       <a href="#destinos">Destinos</a>
-      <a href="#equipo">Equipo</a>
       <a href="guia.html">Guía</a>
+      <a href="#equipo">Equipo</a>
     </nav>
   </header>
 
-  <!-- ===== HERO (big welcome banner) ===== -->
   <section class="hero">
-    <p class="hero-tag">Una guía de viaje · A travel guide</p>
-    <h1>Descubre el <br><em>Mundo Hispano</em></h1>
-    <p class="hero-text">
-      More than 500 million people speak Spanish.<br>
-      Welcome to our <span class="es" data-en="journey">viaje</span>
-      by Hispanic countries: their <span class="es" data-en="food">comida</span>,
-      their <span class="es" data-en="places">lugares</span> and their 
-      <span class="es" data-en="customs">costumbres</span>.
-    </p>
-    <a href="#destinos" class="btn">¡Vamos! ✈️</a>
-    <p class="hint">💡 Pasa el ratón sobre las palabras subrayadas · Hover over the underlined words</p>
-  </section>
-
-  <!-- ===== DESTINATIONS (cards are created automatically from js/paises.js) ===== -->
-  <section id="destinos" class="section">
-    <h2>¿Adónde vamos?</h2>
-    <p class="section-sub">Where are we going? Choose a country.</p>
-    <div id="lista-paises" class="card-grid"></div>
-  </section>
-
-  <!-- ===== WHAT YOU'LL FIND ===== -->
-  <section class="section section-alt">
-    <h2>¿Qué encontrarás?</h2>
-    <p class="section-sub">What you'll find on every country page</p>
-    <div class="feature-grid">
-      <div class="feature"><span>🍽️</span><h3>Comida</h3><p>Foods to try</p></div>
-      <div class="feature"><span>🏛️</span><h3>Lugares</h3><p>Places to visit</p></div>
-      <div class="feature"><span>🤝</span><h3>Costumbres</h3><p>Customs &amp; etiquette</p></div>
-      <div class="feature"><span>🎉</span><h3>Fiestas</h3><p>Festivals</p></div>
-      <div class="feature"><span>🗣️</span><h3>Frases</h3><p>Useful phrases</p></div>
+    <div class="hero-visual">
+      <img src="images/colombia/cartagena.jpg" alt="Calles coloridas de Cartagena, Colombia">
     </div>
+    <div class="hero-content">
+      <p class="hero-tag">Una guía visual · A visual guide</p>
+      <h1>Viaja por el <em>mundo hispano</em></h1>
+      <p class="hero-text">Descubre la <span class="es" data-en="culture">cultura</span>, la
+        <span class="es" data-en="food">comida</span> y los lugares que hacen único a cada destino.</p>
+      <a href="#destinos" class="btn">Explorar destinos <span aria-hidden="true">↗</span></a>
+      <div class="hero-meta">
+        <span><strong>05</strong> países explorados</span>
+        <span><strong>01</strong> guía compartida</span>
+      </div>
+    </div>
+    <span class="scroll-cue">Descubre más</span>
   </section>
 
-  <!-- ===== TEAM (also created automatically) ===== -->
-  <section id="equipo" class="section">
-    <h2>Nuestro Equipo</h2>
-    <p class="section-sub">Our team: each person made their own country page</p>
-    <div id="lista-equipo" class="team-grid"></div>
-  </section>
+  <main>
+    <section class="section section-alt">
+      <div class="intro-panel">
+        <div>
+          <p class="eyebrow">Más que un destino</p>
+          <h2>Una ventana a nuevas formas de vivir.</h2>
+        </div>
+        <div class="intro-copy">
+          <p>Más de 500 millones de personas hablan español. Este espacio reúne pequeñas historias para aprender, comparar y viajar con curiosidad, desde las plazas de Europa hasta las selvas y costas de América.</p>
+          <a class="text-link" href="#destinos">Comenzar a explorar <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="intro-image">
+          <img src="images/colombia/cocora.jpg" alt="Palmeras y montañas del Valle de Cocora, Colombia" loading="lazy">
+        </div>
+      </div>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
+    <section id="destinos" class="section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Elige tu próxima historia</p><h2>Destinos destacados</h2></div>
+        <p class="section-sub">Choose a country and explore its places, food, traditions and useful phrases.</p>
+      </div>
+      <div class="destination-carousel" id="destino-carousel" aria-roledescription="carousel">
+        <div class="carousel-viewport">
+          <div id="lista-paises" class="carousel-track"></div>
+        </div>
+        <div class="carousel-controls" aria-label="Controles de destinos">
+          <button class="carousel-control" type="button" data-carousel="prev" aria-label="Destino anterior">←</button>
+          <span class="carousel-status" aria-live="polite"></span>
+          <button class="carousel-control" type="button" data-carousel="next" aria-label="Siguiente destino">→</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="section-heading">
+        <div><p class="eyebrow">Dentro de cada página</p><h2>Aprende viajando</h2></div>
+        <p class="section-sub">Small details, useful words and stories that make every destination memorable.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature"><span>🍽️</span><h3>Sabores</h3><p>Foods to try</p></div>
+        <div class="feature"><span>🏛️</span><h3>Lugares</h3><p>Places to visit</p></div>
+        <div class="feature"><span>🤝</span><h3>Costumbres</h3><p>Customs &amp; etiquette</p></div>
+        <div class="feature"><span>🎉</span><h3>Fiestas</h3><p>Festivals &amp; stories</p></div>
+        <div class="feature"><span>🗣️</span><h3>Frases</h3><p>Useful phrases</p></div>
+      </div>
+    </section>
+
+    <section id="equipo" class="section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Hecho en equipo</p><h2>Las voces detrás del mapa</h2></div>
+        <p class="section-sub">Cada página nace de la investigación y la mirada de un miembro del equipo.</p>
+      </div>
+      <div id="lista-equipo" class="team-grid"></div>
+    </section>
+  </main>
+
   <footer class="site-footer">
     <p>Hecho con ❤️ por nuestro equipo · Digital Assignment 2026-27</p>
   </footer>

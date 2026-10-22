@@ -16,7 +16,7 @@ function marcar(texto) {
 
 // A picture box. If the picture is missing, a "📷" placeholder shows instead.
 function foto(src, alt) {
-  return `<div class="foto">${src ? `<img src="${src}" alt="${alt || ""}" onerror="this.remove()">` : ""}</div>`;
+  return `<div class="foto">${src ? `<img src="${src}" alt="${alt || ""}" loading="lazy" onerror="this.remove()">` : ""}</div>`;
 }
 
 // Text can be one string or a list of paragraphs
@@ -27,8 +27,8 @@ function parrafos(t) {
 // ---------- One function per section style ----------
 const ESTILOS = {
   // cards: picture + title + text (places, food, festivals)
-  tarjetas: s => `<div class="mini-grid">${(s.items || []).map(i => `
-      <div class="mini-card">${foto(i.foto, i.titulo)}
+  tarjetas: s => `<div class="mini-grid">${(s.items || []).map((i, index) => `
+      <div class="mini-card ${index === 0 ? "mini-card-featured" : ""}">${foto(i.foto, i.titulo)}
         <div class="mini-body"><h3>${marcar(i.titulo)}</h3>${parrafos(i.texto)}</div>
       </div>`).join("")}</div>`,
 
@@ -69,6 +69,7 @@ function construir() {
   let html = `
     <section class="pais-hero" style="background-image:url('${pais.foto}')">
       <div class="pais-hero-in">
+        <p class="eyebrow">Guía de destino · Destination guide</p>
         <img class="pais-flag" src="https://flagcdn.com/w160/${pais.codigo}.png" alt="Bandera">
         <h1>${pais.nombre}</h1>
         <p>${pais.lema}</p>
@@ -94,7 +95,12 @@ function construir() {
   }
 
   // Intro
-  if (c.introduccion) html += `<section class="intro">${parrafos(c.introduccion)}</section>`;
+  if (c.introduccion) {
+    html += `<section class="country-intro">
+      <div class="country-intro-label"><span class="eyebrow">En pocas palabras</span><span class="country-intro-line"></span></div>
+      <div class="country-intro-copy">${parrafos(c.introduccion)}</div>
+    </section>`;
+  }
 
   const secciones = c.secciones || [];
 
@@ -106,16 +112,18 @@ function construir() {
   // The sections themselves
   secciones.forEach((s, i) => {
     const estilo = ESTILOS[s.tipo] || ESTILOS.texto;
-    html += `<section class="section ${i % 2 ? "section-alt" : ""}" id="s${i}">
-      <h2>${s.icono || ""} ${s.titulo}</h2>
-      ${s.subtitulo ? `<p class="section-sub">${s.subtitulo}</p>` : ""}
+    html += `<section class="section country-section ${i % 2 ? "section-alt" : ""}" id="s${i}">
+      <div class="section-heading">
+        <div><p class="eyebrow">${s.icono || ""} Sección de destino</p><h2>${s.titulo}</h2></div>
+        ${s.subtitulo ? `<p class="section-sub">${s.subtitulo}</p>` : ""}
+      </div>
       ${estilo(s)}
     </section>`;
   });
 
   // Reflection
-  html += `<section class="section ${secciones.length % 2 ? "section-alt" : ""}" id="reflexion">
-    <h2>💭 Lo que aprendí</h2>
+  html += `<section class="section country-section ${secciones.length % 2 ? "section-alt" : ""}" id="reflexion">
+    <div class="section-heading"><div><p class="eyebrow">Cierre personal</p><h2>Lo que aprendí</h2></div></div>
     <div class="reflexion">${parrafos(c.reflexion)}<p class="firma">— ${pais.autor}</p></div>
   </section>`;
 
